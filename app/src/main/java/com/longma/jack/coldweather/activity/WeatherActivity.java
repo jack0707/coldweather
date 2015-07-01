@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.longma.jack.coldweather.R;
+import com.longma.jack.coldweather.service.AutoUpdateService;
 import com.longma.jack.coldweather.util.HttpCallbackListener;
 import com.longma.jack.coldweather.util.HttpUtil;
 import com.longma.jack.coldweather.util.Utility;
@@ -143,10 +144,12 @@ public class WeatherActivity extends Activity implements View.OnClickListener
         temp1Text.setText(prefs.getString("temp1",""));
         temp2Text.setText(prefs.getString("temp2",""));
         weatherDespText.setText(prefs.getString("weather_desp",""));
-        publishText.setText("今天"+prefs.getString("publish_time","")+"发布");
+        publishText.setText("今天" + prefs.getString("publish_time", "") + "发布");
         System.out.println("publish sucees");
         currentDateText.setText(prefs.getString("current_date", ""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNameText.setVisibility(View.VISIBLE);
+        Intent intent=new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 }
